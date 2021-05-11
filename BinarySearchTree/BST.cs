@@ -20,6 +20,7 @@ namespace BinarySearchTreeFinal
         }
 
         int leftCount = 0, rightCount = 0;
+        bool result = false;
 
         public void Insert(T item)
         {
@@ -53,6 +54,23 @@ namespace BinarySearchTreeFinal
                 this.rightCount++;
                 this.rightTree.Display();
             }
+        }
+        public bool IfExists(T element, BinarySearchTree<T> node)
+        {
+            if (node == null)
+                return false;
+            if (node.NodeData.Equals(element))
+            {
+                Console.WriteLine("Found the element in BST" + " " + node.NodeData);
+                result = true;
+            }
+            else
+                Console.WriteLine("Current element is {0} in BST", node.NodeData);
+            if (element.CompareTo(node.NodeData) < 0)
+                IfExists(element, node.leftTree);
+            if (element.CompareTo(node.NodeData) > 0)
+                IfExists(element, node.rightTree);
+            return result;
         }
     }
 }
